@@ -1,10 +1,10 @@
-'use client'
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button"
+
+import React from 'react';
+
 
 
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   
   
 
@@ -12,11 +12,11 @@ const Navbar = () => {
     <nav className="bg-[#dadada] p-4">
       <div className="container mx-auto flex justify-between items-center">
         
-        <div className="flex items-center space-x-4">
+        <div className="flex justify-between items-center space-x-4">
           <a href="/" className="text-black text-2xl font-bold">SIgnaturefree</a>
           
           {/* Home Dropdown */}
-          <div className="relative">
+          {/* <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="text-white hover:bg-gray-700 px-3 py-2 rounded-md"
@@ -31,12 +31,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
-        </div>
+        </div> */}
 
         {/* Right Side: Search Button */}
-        <div className="relative">
+        {/* <div className="relative">
         <Button variant="outline" className='mr-5'>SignIn</Button>
-        <Button variant="outline">FreeTrial</Button>
+        <Button variant="outline">FreeTrial</Button> */}
           
         </div>
       </div>

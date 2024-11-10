@@ -28,7 +28,7 @@ export default function Whiteboard() {
   const clearCanvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height); // Clears the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
   const startdrawing =({nativeEvent})=>{
@@ -74,19 +74,45 @@ export default function Whiteboard() {
     link.click(); 
   };
   
+  
+    const handleFileUpload = (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+  
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = canvasRef.current;
+          const context = canvas.getContext('2d');
+  
+          context.clearRect(0, 0, canvas.width, canvas.height);
+  
+          
+          context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
 
 
     
   return (
     <div className='flex justify-center items-center flex-col'>
     <div className='flex '>
-    <button onClick={clearCanvas} className="text-black hover:bg-[#14fca9] m-5 px-3 py-2 rounded-md w-full bg-white ">
+    <button onClick={clearCanvas} className="text-black hover:bg-black hover:text-white m-5 px-3 py-2 rounded-md w-full bg-white ">
               reset
             </button>
 
-            <button onClick={downloadCanvas} className="text-black hover:bg-[#14fca9] m-5 px-3 py-2 rounded-md w-full bg-white ">
+            <button onClick={downloadCanvas} className="text-black hover:bg-black hover:text-white m-5 px-3 py-2 rounded-md w-full bg-white ">
               download
             </button>
+            <button  onChange={handleFileUpload} className="text-black hover:bg-black hover:text-white m-5 px-3 py-2 rounded-md w-full bg-white ">
+            <input type="file" accept="image/*"/>
+            </button>
+            
+            
     </div>
     <div className='bg-white'>
        

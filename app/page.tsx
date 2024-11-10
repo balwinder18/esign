@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className='' id="homepage">
-      <div className='h-[8vh]' id="navbar">
+      <div className='' id="navbar">
         <Navbar />
       </div>
 
