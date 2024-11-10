@@ -11,7 +11,7 @@ export default function Whiteboard() {
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = window.innerWidth * 0.688; // Set canvas width
-    canvas.height = window.innerHeight * 0.8; // Set canvas height
+    canvas.height = window.innerHeight * 0.77; // Set canvas height
 
 
     const context = canvas.getContext('2d');
@@ -24,6 +24,12 @@ export default function Whiteboard() {
     
   
   }, []);
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height); // Clears the canvas
+  };
 
   const startdrawing =({nativeEvent})=>{
       
@@ -45,12 +51,45 @@ export default function Whiteboard() {
     contextRef.current.stroke();
   };
   
+  const downloadCanvas = () => {
+    const canvas = canvasRef.current;
+    
+
+    
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    const tempContext = tempCanvas.getContext('2d');
+
+    
+    tempContext.fillStyle = 'white';
+    tempContext.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+    tempContext.drawImage(canvas, 0, 0);
+
+    
+    const link = document.createElement('a');
+    link.href = tempCanvas.toDataURL('image/png'); 
+    link.download = 'canvas-image-with-bg.png';
+    link.click(); 
+  };
   
 
 
     
   return (
-    <div>
+    <div className='flex justify-center items-center flex-col'>
+    <div className='flex '>
+    <button onClick={clearCanvas} className="text-black hover:bg-[#14fca9] m-5 px-3 py-2 rounded-md w-full bg-white ">
+              reset
+            </button>
+
+            <button onClick={downloadCanvas} className="text-black hover:bg-[#14fca9] m-5 px-3 py-2 rounded-md w-full bg-white ">
+              download
+            </button>
+    </div>
+    <div className='bg-white'>
+       
       <canvas
         ref={canvasRef}
         onMouseDown={startdrawing}
@@ -59,6 +98,7 @@ export default function Whiteboard() {
         onMouseLeave={stopdrawing}
         className="border border-black"
       />
+      </div>
     </div>
   )
 }
