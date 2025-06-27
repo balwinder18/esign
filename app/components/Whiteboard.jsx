@@ -9,21 +9,20 @@ export default function Whiteboard() {
   const [Isdrawing , setIsdrawing] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    canvas.width = window.innerWidth * 0.688; 
-    canvas.height = window.innerHeight * 0.77; 
+  const canvas = canvasRef.current;
 
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
 
-    const context = canvas.getContext('2d');
-    context.strokeStyle = 'black';
-    context.lineCap = 'round';
-    context.lineWidth =1;
-    contextRef.current = context;
-  
+  canvas.width = width;
+  canvas.height = height;
 
-    
-  
-  }, []);
+  const context = canvas.getContext('2d');
+  context.strokeStyle = 'black';
+  context.lineCap = 'round';
+  context.lineWidth = 1;
+  contextRef.current = context;
+}, []);
 
   const clearCanvas = () => {
     
