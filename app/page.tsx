@@ -13,10 +13,10 @@ export default function Home() {
         <Navbar />
       </div>
 
-      <div className=' w-full' id="main">
+      <div className='w-full' id="main">
         <div className='flex'>
           <div className=' w-full bg-[#dadada] flex items-center flex-col' id="right">
-            <div id="board" className='m-5 h-[82vh] w-[120vh] w- rounded-lg'>
+            <div id="board" className='m-5 rounded-lg'>
               <Whiteboard />
             </div>
           </div>
